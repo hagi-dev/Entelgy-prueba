@@ -56,6 +56,7 @@ user-card:
 ---
 para ejecutar la prueba se necesitara instalar un servidor en este caso puden instalar live-serve
 para su ejecucion o cualquier otro servidor de desarrollo.
+ - ejecutar con live-server y esperar asta que carge la pagina
 
 <img src="./src/assets/img/live-serve.png">
 
