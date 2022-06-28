@@ -12,6 +12,7 @@ usersParse.forEach((item, index) => {
     listCardUser +
     `
         <user-card
+        onclick="handleClickOpenModal(${item.id})"
         idd=${item.id}
         first_name=${item.first_name}
         last_name=${item.last_name}
@@ -22,3 +23,4 @@ usersParse.forEach((item, index) => {
 });
 
 listUsers.innerHTML = listCardUser;
+
