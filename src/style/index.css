@@ -1,0 +1,28 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-color: #0D1317;
+}
+
+.header{
+    text-align:center;
+    width: 100vw;
+    height: 80px;
+    color: #6564DB;
+    background-color:rgba(13, 19, 23, .4);
+}
+.header h1{
+    line-height: 80px;
+    font-family:"mulish",sans-serif;
+    font-weight: 500;
+}
+
+.list-users{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}

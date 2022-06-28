@@ -5,11 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./src/style/style.css"/>
+    <link rel="stylesheet" href="./src/style/index.css"/>
 </head>
 <body> 
+    <header class="header">
+       <h1> Lista de Usuarios</h1>
+    </header>
     <div class="list-users" id="list-users"></div>
-    <script type="module" src="./src/components/user.js"></script> 
+    <modal-user 
+    id="modal1"
+    name=""
+    lastname=""
+    email=""
+    image=""
+    ></modal-user>
+    <script type="module" src="./src/components/cardUser.js"></script> 
+    <script type="module" src="./src/components/modal.js"></script>
     <script type="module" src="main.js"></script> 
+    <script>
+        function prueba(e){
+            let overlay = document.getElementById("overlay");
+            overlay.classList.add("active");
+            let modal = document.getElementById("modal1");
+            modal.setAttribute("name","juan");
+            modal.location.reload();
+        }
+        function handleClickCloseModal(){
+            let modal = document.getElementById("overlay");
+            modal.classList.remove("active");
+        }
+    </script>
 </body>
 </html>
