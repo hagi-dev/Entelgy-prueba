@@ -6,6 +6,11 @@
 
 body{
     background-color: #0D1317;
+    overflow-x: hidden;
+}
+
+.activeBody{
+    overflow: hidden;
 }
 
 .header{
@@ -21,8 +26,13 @@ body{
     font-weight: 500;
 }
 
+button:focus{
+    outline: none
+}
+
 .list-users{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
+

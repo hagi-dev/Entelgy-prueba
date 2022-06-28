@@ -28,7 +28,7 @@ class User extends HTMLElement {
     getTemplate() {
       const template = document.createElement("template");
       template.innerHTML = `
-            <section class="user-card" id="${this.idd}" onclick="prueba(${this.idd})">
+            <section class="user-card" id="${this.idd}" onclick="handleClickOpenModal(${this.idd})">
             <img src=${this.avatar}>
             <div class="user-card__decoration"></div>
               <div class="user-card__content">

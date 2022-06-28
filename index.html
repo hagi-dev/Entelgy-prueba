@@ -22,18 +22,6 @@
     <script type="module" src="./src/components/cardUser.js"></script> 
     <script type="module" src="./src/components/modal.js"></script>
     <script type="module" src="main.js"></script> 
-    <script>
-        function prueba(e){
-            let overlay = document.getElementById("overlay");
-            overlay.classList.add("active");
-            let modal = document.getElementById("modal1");
-            modal.setAttribute("name","juan");
-            modal.location.reload();
-        }
-        function handleClickCloseModal(){
-            let modal = document.getElementById("overlay");
-            modal.classList.remove("active");
-        }
-    </script>
+    <script src="./src/events/modal.js"></script>
 </body>
 </html>
