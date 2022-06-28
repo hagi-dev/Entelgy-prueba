@@ -1,7 +1,6 @@
 class Modal extends HTMLElement {
     constructor() {
       super();
-      this.attachShadow({ mode: "open" });
     }
     static get observedAttributes() {
       return ["name", "lastname", "email", "image"];
@@ -10,33 +9,35 @@ class Modal extends HTMLElement {
       if (attr === "name") {
         this.name = newVal;
       }
-      if (attr === "lastname") {
+      else if (attr === "lastname") {
         this.lastname = newVal;
       }
-      if (attr === "email") {
+      else if (attr === "email") {
         this.email = newVal;
       }
-      if (attr === "image") {
+      else if (attr === "image") {
         this.image = newVal;
       }
     }
     getTemplate() {
       const template = document.createElement("template");
+      console.log("mos¿dal ", this.name);
       template.innerHTML = `
-            <section class="overlay">
+            <section class="overlay" id="overlay">
               <div class="modal">
+                <button class="modal__close" onclick="handleClickCloseModal()">x</button>
                 <div>
                     <h2>
-                    ${this.name}
+                    Lindsay
                     </h2>
                     <h3>
-                    ${this.lastname}
+                    Ferguson
                     </h3>
                     <h4>
-                    ${this.email}
+                    lindsay.ferguson@reqres.in
                     </h4>
                 </div>
-                <img src=${this.image}/>
+                <img src="https://reqres.in/img/faces/8-image.jpg"/>
               </div>
             </section>
             ${this.getStyles()}
@@ -50,18 +51,21 @@ class Modal extends HTMLElement {
               width:100vw;
               height:100vh;
               z-index:999;
+              position: absolute;
+              top:0;
+              display:none;
+              background: rgba(0,0,0,0.85);
           }
+          .overlay.active{
+              display:block;
+            }
           .modal{
-
-          }
-          .user-card{
-              background: blue
+            background: white;
           }
               .user-card{
-                  margin: 15px;
               }
               h2 {
-              color: red;
+
               }
               img{
                   width:100px;
@@ -70,7 +74,7 @@ class Modal extends HTMLElement {
           `;
     }
     render() {
-      this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
+      this.appendChild(this.getTemplate().content.cloneNode(true));
     }
     connectedCallback() {
       this.render();
