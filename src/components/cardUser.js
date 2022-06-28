@@ -1,34 +1,33 @@
 class User extends HTMLElement {
-    constructor() {
-      super();
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+  static get observedAttributes() {
+    return ["first_name", "last_name", "email", "avatar", "idd"];
+  }
+  attributeChangedCallback(attr, oldVal, newVal) {
+    if (attr === "first_name") {
+      this.first_name = newVal;
     }
-    static get observedAttributes() {
-      return ["first_name", "last_name", "email", "avatar","idd"];
+    if (attr === "last_name") {
+      this.last_name = newVal;
     }
-    attributeChangedCallback(attr, oldVal, newVal) {
-      if (attr === "first_name") {
-        this.first_name = newVal;
-      }
-      if (attr === "last_name") {
-        this.last_name = newVal;
-      }
-      if (attr === "email") {
-        this.email = newVal;
-      }
-      if (attr === "avatar") {
-        this.avatar = newVal;
-      }
-      if (attr === "idd") {
-        this.idd = newVal;
-      }
+    if (attr === "email") {
+      this.email = newVal;
     }
-    cambio(e){
-        console.log(e)
+    if (attr === "avatar") {
+      this.avatar = newVal;
     }
-    getTemplate() {
-      const template = document.createElement("template");
-      template.innerHTML = `
-            <section class="user-card" id="${this.idd}" onclick="handleClickOpenModal(${this.idd})">
+    if (attr === "idd") {
+      this.idd = newVal;
+    }
+  }
+
+  getTemplate() {
+    const template = document.createElement("template");
+    template.innerHTML = `
+            <section class="user-card" id="${this.idd}" >
             <img src=${this.avatar}>
             <div class="user-card__decoration"></div>
               <div class="user-card__content">
@@ -45,16 +44,22 @@ class User extends HTMLElement {
             </section>
             ${this.getStyles()}
           `;
-      return template;
-    }
-    getStyles() {
-      return `
+    return template;
+  }
+  getStyles() {
+    return `
           <style>
+          :host{
+            --primary-color: rgba(35,46,209,1);
+            --secondary-color: rgba(16,29,66,1);
+            --tertiary-color: rgba(101, 100, 219, 1);
+            --quaternary-color:#89D2DC;
+          }
             .user-card{
                 width: 250px;
                 height: 270px;
-                background: rgb(16,29,66);
-                background: linear-gradient(45deg, rgba(16,29,66,1) 0%, rgba(35,46,209,1) 100%);
+                background: var(--secondary-color);
+                background: linear-gradient(45deg, var(--secondary-color) 0%, var(--primary-color) 100%);
                 margin: 15px;
                 padding: 20px;
                 padding-top: 20px;
@@ -66,7 +71,7 @@ class User extends HTMLElement {
                 cursor: pointer;
                 border-radius: 10px;
                 position:relative;
-                box-shadow: 0px 0px 6px 1px rgba(101, 100, 219, 1);
+                box-shadow: 0px 0px 6px 1px var(--tertiary-color);
             }
 
             .user-card .user-card__decoration{
@@ -93,15 +98,17 @@ class User extends HTMLElement {
                 color: white;
                 font-size: 1.2rem;
                 letter-spacing: 2px;
+                margin:0;
                 opacity: 0;
                 
             }
             .user-card .user-card__content h3{
                 width:100%;
                 font-size: 1rem;
-                color: #89D2DC;
-                margin-bottom: 5%;
+                color: var(--quaternary-color);
+                margin:0;
                 opacity: 0;
+                margin-botton:50%;
             }
             .user-card .user-card__content a{
                 width:100%;
@@ -133,16 +140,26 @@ class User extends HTMLElement {
             .user-card:hover h3{
                 opacity: 1;
             }
+            @media only screen and (max-width:950px){
+              .user-card img{
+                width: 150px;
+                height: 150px;
+              }
+              .user-card .user-card__content h2{
+                  opacity:1;
+              }
+              .user-card .user-card__content h3{
+                  opacity:1;
+              }
           </style>
           `;
-    }
-    render() {
-      this.appendChild(this.getTemplate().content.cloneNode(true));
-    }
-    connectedCallback() {
-      this.render();
-    }
   }
-  
-  customElements.define("user-card", User);
-  
+  render() {
+    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
+  }
+  connectedCallback() {
+    this.render();
+  }
+}
+
+customElements.define("user-card", User);

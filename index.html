@@ -12,16 +12,11 @@
        <h1> Lista de Usuarios</h1>
     </header>
     <div class="list-users" id="list-users"></div>
-    <modal-user 
-    id="modal1"
-    name=""
-    lastname=""
-    email=""
-    image=""
-    ></modal-user>
+    <user-modal  id="modal1">
+    </user-modal>
     <script type="module" src="./src/components/cardUser.js"></script> 
-    <script type="module" src="./src/components/modal.js"></script>
+    <script type="module" src="./src/components/userModal.js"></script>
     <script type="module" src="main.js"></script> 
-    <script src="./src/events/modal.js"></script>
+    <script src="./src/events/modalState.js"></script>
 </body>
 </html>
